@@ -21,7 +21,7 @@ public class App {
                     ArrayList<String> lista = new ArrayList<>();
                     lista = teste.leituraArquivo();
                     Livro l1 = new Livro(lista);// instancia objeto livro com o array retornado de Dados
-
+                    l1.geraArvore();
 //                    for(String linha : lista) {
 //                            if(!linha.equals("\n"))//quando for diferente de \n
 //                                    System.out.print(linha + "\n");
@@ -36,8 +36,8 @@ public class App {
 
         
         
-        ArrayList<Integer> l = arv.positionsWidth();
-        System.out.println(l);
+//        ArrayList<Integer> l = arv.positionsWidth();
+//        System.out.println(l);
         
     }
 }
