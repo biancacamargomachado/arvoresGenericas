@@ -29,7 +29,7 @@ public class App {
 //                    }
 
             }catch(Exception e) {
-                    System.out.println("Exce��o"+e);
+                    System.out.println("Excecao"+e);
             }
 
         
