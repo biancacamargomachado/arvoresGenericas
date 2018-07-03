@@ -37,23 +37,24 @@ public class Livro {
         
         for (String este : dados) {
             // equals "/n"
-
-        	if (este.equals(titulo) || este.equals(capitulo) || este.equals(secao) || este.equals(paragrafo)) {
-            	ultimo = este;
-            	continue;//vai pra próxima iteração do foreach
-//                titAnterior = este;
-        	} else if (ultimo.equals(titulo)) {//se for um título
-        		livro.add("L&"+este,null);//add o título que será root
-        	}else if(ultimo.equals(capitulo)) {//se for um capitulo
-        		livro.add("C&"+este, livro.getRoot());//filho da raiz
-                capAnterior = "C&"+este;//ultimo capitulo acessado
-            }else if (ultimo.equals(secao)) {//se for uma secao
-                livro.add("S&"+este, capAnterior);//filho do capitulo anterior
-                secAnterior="S&"+este;// ultima secao acessada
-            }else if (ultimo.equals(paragrafo)) {
-                livro.add("P&"+este, secAnterior);//filho da sessao anterior
-                paragAnterior = "P&"+este;
-            }else if(este.equals("\n")) continue;//se achar um \n continua
+        	if(!este.equals("\n")) {
+	        	if (este.equals(titulo) || este.equals(capitulo) || este.equals(secao) || este.equals(paragrafo)) {
+	            	ultimo = este;
+	            	continue;//vai pra próxima iteração do foreach
+	//                titAnterior = este;
+	        	} else if (ultimo.equals(titulo)) {//se for um título
+	        		livro.add("L&"+este,null);//add o título que será root
+	        	}else if(ultimo.equals(capitulo)) {//se for um capitulo
+	        		livro.add("C&"+este, livro.getRoot());//filho da raiz
+	                capAnterior = "C&"+este;//ultimo capitulo acessado
+	            }else if (ultimo.equals(secao)) {//se for uma secao
+	                livro.add("S&"+este, capAnterior);//filho do capitulo anterior
+	                secAnterior="S&"+este;// ultima secao acessada
+	            }else if (ultimo.equals(paragrafo)) {
+	                livro.add("P&"+este, secAnterior);//filho da sessao anterior
+	                paragAnterior = "P&"+este;
+	            }
+        	} else continue;//se achar um \n continua
 //            if (este.equals(subsecao)) {
 //                livro.add(este, livro.getFaher(secAnterior)); // fazer depois
 //
