@@ -33,7 +33,6 @@ public class Dados {
 							desc += " " + teste[i];
 						}
 					}
-				
 				listaLinhas.add(item);
 				listaLinhas.add(desc);
 				listaLinhas.add("\n");
