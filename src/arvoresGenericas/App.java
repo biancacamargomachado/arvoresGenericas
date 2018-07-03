@@ -1,9 +1,11 @@
 package arvoresGenericas;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 public class App {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
         GeneralTreeOfInteger arv = new GeneralTreeOfInteger();
         arv.add(1, null);
         arv.add(2, 1);
@@ -14,6 +16,22 @@ public class App {
         arv.add(8, 6); 
         arv.add(7, 3); 
         arv.add(5, 2); 
+        Dados teste = new Dados();
+        
+        try {
+        	ArrayList<String> lista = new ArrayList<>();
+        	lista = teste.leituraArquivo();
+        	
+        	for(String linha : lista) {
+        		if(!linha.equals("\n"))//quando for diferente de \n
+        			System.out.print(linha + "\n");
+        	}
+        	
+        }catch(Exception e) {
+        	System.out.println("Exceção"+e);
+        }
+        
+        
         ArrayList<Integer> l = arv.positionsWidth();
         System.out.println(l);
         
