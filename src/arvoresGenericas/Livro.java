@@ -74,10 +74,25 @@ public class Livro {
         }
     }
 
-    public void imprimeSumario (){}
+    public void geraSumario (GeneralTreeOfString livro){
+        ArrayList<String> linhas = livro.positionsPre();
+        for (String a :linhas) {
+            String[] arquivo = a.split("&");
+            if (arquivo[0].equals(titulo)){
+                cont=15;
+            }
+            if (arquivo[0].equals(capitulo)){
+                cont=1;
+            }
+            if (arquivo[0].equals(secao)){}
+            if (arquivo[0].equals(paragrafo)){}
+
+        }
+    }
 
     public void imprimeLivro (){}
     // if ttiulo imprime uma pagina
     // imprime página 1
     // imprimeSumario()
+
 }
