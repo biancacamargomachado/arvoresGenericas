@@ -31,6 +31,7 @@ public class Livro {
     	
         String capAnterior = "";//ultimo capitulo acessado
         String secAnterior = "";//ultima secao acessada
+        String subAnterior = "";//ultima secao acessada
         String titAnterior = "";//ultimo titulo acessado
         String paragAnterior = "";//ultimo paragrafo acessado
         String ultimo = "";//salvo ultimo item acessado, L, P, S, SS...
@@ -38,7 +39,7 @@ public class Livro {
         for (String este : dados) {
             // equals "/n"
         	if(!este.equals("\n")) {
-	        	if (este.equals(titulo) || este.equals(capitulo) || este.equals(secao) || este.equals(paragrafo)) {
+	        	if (este.equals(titulo) || este.equals(capitulo) || este.equals(secao) || este.equals(paragrafo) || este.equals(subsecao)) {
 	            	ultimo = este;
 	            	continue;//vai pra próxima iteração do foreach
 	//                titAnterior = este;
@@ -50,15 +51,18 @@ public class Livro {
 	            }else if (ultimo.equals(secao)) {//se for uma secao
 	                livro.add("S&"+este, capAnterior);//filho do capitulo anterior
 	                secAnterior="S&"+este;// ultima secao acessada
+	                subAnterior = null;//limpa a subsecao, pq se chegou aqui é pq já fechou a sub
 	            }else if (ultimo.equals(paragrafo)) {
-	                livro.add("P&"+este, secAnterior);//filho da sessao anterior
+	            	if(subAnterior==null)
+	            		livro.add("P&"+este, secAnterior);//filho da sessao anterior
+	            	else //se tiver subseção
+	            		livro.add("P&"+este, subAnterior);//filho da sessao anterior
 	                paragAnterior = "P&"+este;
+	            }else if (ultimo.equals(subsecao)) {
+	                livro.add("SS&"+este, secAnterior);
+	                subAnterior = "SS&"+este;
 	            }
         	} else continue;//se achar um \n continua
-//            if (este.equals(subsecao)) {
-//                livro.add(este, livro.getFaher(secAnterior)); // fazer depois
-//
-//            }
           
 
 //            if (linhas.get(key).equals(paragrafo)) paragrafos.add(linhas.get(key));
