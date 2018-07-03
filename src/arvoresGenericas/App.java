@@ -15,22 +15,25 @@ public class App {
         arv.add(0, null);
         arv.add(8, 6); 
         arv.add(7, 3); 
-        arv.add(5, 2); 
+        arv.add(5, 2);
         Dados teste = new Dados();
+            try {
+                    ArrayList<String> lista = new ArrayList<>();
+                    lista = teste.leituraArquivo();
+                    Livro l1 = new Livro(lista);// instancia objeto livro com o array retornado de Dados
+
+//                    for(String linha : lista) {
+//                            if(!linha.equals("\n"))//quando for diferente de \n
+//                                    System.out.print(linha + "\n");
+//                            //Formato que retorna o ArrayList = "L" "Big Java" "\n"
+//                    }
+
+            }catch(Exception e) {
+                    System.out.println("Exceï¿½ï¿½o"+e);
+            }
+
         
-        try {
-        	ArrayList<String> lista = new ArrayList<>();
-        	lista = teste.leituraArquivo();
-        	
-        	for(String linha : lista) {
-        		if(!linha.equals("\n"))//quando for diferente de \n
-        			System.out.print(linha + "\n");
-        		//Formato que retorna o ArrayList = "L" "Big Java" "\n" 
-        	}
-        	
-        }catch(Exception e) {
-        	System.out.println("Exceção"+e);
-        }
+
         
         
         ArrayList<Integer> l = arv.positionsWidth();

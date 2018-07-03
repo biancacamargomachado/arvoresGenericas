@@ -14,9 +14,10 @@ import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 public class Dados {
+
 	public ArrayList<String> leituraArquivo() throws IOException {
 		String item = "";
-		String desc = "";//descrição
+		String desc = "";//descriï¿½ï¿½o
 		int cont = 0; //
 		ArrayList<String> listaLinhas = new ArrayList<>();
 		
@@ -24,10 +25,10 @@ public class Dados {
 			BufferedReader br = new BufferedReader(new FileReader("livro.txt"));
 			while(br.ready()){
 				String linha = br.readLine();
-				String[] teste = linha.split(" ");//quebra por espaços
+				String[] teste = linha.split(" ");//quebra por espaï¿½os
 				item = teste[0];
 				desc = teste[1];
-					for(int i=2;i<teste.length;i++) {//inicia em 2, pq a posição 0 e 1 já pegou
+					for(int i=2;i<teste.length;i++) {//inicia em 2, pq a posiï¿½ï¿½o 0 e 1 jï¿½ pegou
 						if(teste[i]!=null) {
 							desc += " " + teste[i];
 						}
