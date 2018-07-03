@@ -1,14 +1,13 @@
 package arvoresGenericas;
 
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Livro {
 
     private GeneralTreeOfString livro = new GeneralTreeOfString();
-    ;
-    private ArrayList<String> paragrafos;
     private String titulos;
     private String paragrafo;
     private String titulo;
@@ -17,7 +16,9 @@ public class Livro {
     private String subsecao;
     int cont = 0;
     ArrayList<String> dados;
-
+    ArrayList<String> sumario = new ArrayList<>();
+    ArrayList<Integer> paginaParaSumario = new ArrayList<>();
+    
     public Livro(ArrayList<String> listaDados) {
         titulo = "L";
         capitulo = "C";
@@ -92,53 +93,128 @@ public class Livro {
         int contSecoes = 0;
         int contSubsecoes = 0;
         int contParagrafos = 0;
-
+        
         ArrayList<String> linhas = livro.positionsPre();
         String[] arquivo= null;
+       
         for (String a : linhas) {
             arquivo = a.split("&");
             if (arquivo[0].equals(titulo)) {
                 cont = cont + 15;
+                
+                paginaParaSumario.add(getPagina(cont));
                 System.out.println(arquivo[0]);
                 contTitulos++;
             }
             if (arquivo[0].equals(capitulo)) {
                 cont = cont + 1;
+                paginaParaSumario.add(getPagina(cont));
                 System.out.println(arquivo[0]);
                 contCapitulos++;
             }
             if (arquivo[0].equals(secao)) {
                 cont = cont + 1;
+                paginaParaSumario.add(getPagina(cont));
                 System.out.println(arquivo[0]);
                 contSecoes++;
             }
             if (arquivo[0].equals(subsecao)){
                 cont = cont + 1;
+                paginaParaSumario.add(getPagina(cont));
                 System.out.println(arquivo[0]);
                 contSubsecoes++;
             }
             if (arquivo[0].equals(paragrafo)) {
                 int tamParag = Integer.parseInt(arquivo[1]);
                 cont = cont + tamParag;
+                paginaParaSumario.add(getPagina(cont));
                 System.out.println(arquivo[0]);
                 contParagrafos++;
             }
 
+        }
+        
+        int cc= 0;
+        System.out.println("SUMÁRIO");
+        for(String b: sumario) {
+        	cc++;
+        	System.out.print(b);
+        	if(cc==2) {
+        		System.out.println("\n");
+        		cc=0;
+        	}
+        }
+        int paginas;
+        paginas = getPagina(cont);
+    
+        System.out.println("Linhas: "+cont);
+        System.out.println("Páginas: "+paginas);
+
+        geraSumario();      
+    }
+    
+    public Integer getPagina(Integer num) {
+    	int paginas = 0;
+    	
+    	if (num%15==0) 
+    		paginas=num/15;
+        else 
+        	paginas=(num/15)+1;
+    	
+    	return paginas;
+    }
+    
+    public void geraSumario() {        
+        int contC = 0;
+        int contS = 0;
+        int contSS = 0;
+        int contP = 0;
+        int contPag = 0;
+        int aux = 1;
+        
+    	ArrayList<String> linhas = livro.positionsPre();
+        
+        String[] arquivo= null;
+        
+        for (String a : linhas) {
+            arquivo = a.split("&");
+            if (arquivo[0].equals(capitulo)) {
+                contC++;
+                
+                sumario.add(contC+". ");
+                sumario.add(arquivo[1]+"....."+paginaParaSumario.get(aux));
+                aux++;
+                contS = 0;//reinicio cont de seção
+                contSS=0;//reinicio cont de SS
+            }
+            if (arquivo[0].equals(secao)) {
+                contS++;
+                sumario.add(" "+contC+"."+contS+". ");
+                sumario.add(arquivo[1]+"....."+paginaParaSumario.get(aux));
+                aux++;
+            }
+            if (arquivo[0].equals(subsecao)){
+            	contSS++;
+            	sumario.add("  "+contC+"."+contS+"."+contSS+". ");
+                sumario.add(arquivo[1]+"....."+paginaParaSumario.get(aux));
+                aux++;
+            }
+            if (arquivo[0].equals(paragrafo)) {
+                contP++;
+                aux++;
+            }
 
         }
-
-        int paginas;
-        if (cont%15==0) paginas=cont/15;
-        else paginas=(cont/15)+1;
-
-        System.out.println("Linhas: "+cont);
-        System.out.println("Paginas: "+paginas);
-
-
-
-        // if ttiulo imprime uma pagina
-        // imprime pÃ¡gina 1
-        // imprimeSumario()
-
+        
+        int cc= 0;
+        System.out.println("SUMÁRIO");
+        for(String b: sumario) {
+        	cc++;
+        	System.out.print(b);
+        	if(cc==2) {
+        		System.out.println("\n");
+        		cc=0;
+        	}
+        }        
     }
 }
