@@ -25,6 +25,7 @@ public class App {
         	for(String linha : lista) {
         		if(!linha.equals("\n"))//quando for diferente de \n
         			System.out.print(linha + "\n");
+        		//Formato que retorna o ArrayList = "L" "Big Java" "\n" 
         	}
         	
         }catch(Exception e) {
