@@ -43,15 +43,15 @@ public class Livro {
             	continue;//vai pra pr�xima itera��o do foreach
 //                titAnterior = este;
         	} else if (ultimo.equals(titulo)) {//se for um t�tulo
-        		livro.add(este,null);//add o t�tulo que ser� root
+        		livro.add("L&"+este,null);//add o t�tulo que ser� root
         	}else if(ultimo.equals(capitulo)) {//se for um capitulo
-        		livro.add(este, livro.getRoot());//filho da raiz
+        		livro.add("C&"+este, livro.getRoot());//filho da raiz
                 capAnterior = este;//ultimo capitulo acessado
             }else if (ultimo.equals(secao)) {//se for uma secao
-                livro.add(este, capAnterior);//filho do capitulo anterior
+                livro.add("S&"+este, capAnterior);//filho do capitulo anterior
                 secAnterior=este;// ultima secao acessada
             }else if (ultimo.equals(paragrafo)) {
-                livro.add(este, secAnterior);//filho da sessao anterior
+                livro.add("P&"+este, secAnterior);//filho da sessao anterior
                 paragAnterior = este;
             }else if(este.equals("\n")) continue;//se achar um \n continua
 //            if (este.equals(subsecao)) {
