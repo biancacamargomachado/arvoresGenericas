@@ -40,10 +40,10 @@ public class Livro {
 
         	if (este.equals(titulo) || este.equals(capitulo) || este.equals(secao) || este.equals(paragrafo)) {
             	ultimo = este;
-            	continue;//vai pra próxima iteração do foreach
+            	continue;//vai pra prï¿½xima iteraï¿½ï¿½o do foreach
 //                titAnterior = este;
-        	} else if (ultimo.equals(titulo)) {//se for um título
-        		livro.add(este,null);//add o título que será root
+        	} else if (ultimo.equals(titulo)) {//se for um tï¿½tulo
+        		livro.add(este,null);//add o tï¿½tulo que serï¿½ root
         	}else if(ultimo.equals(capitulo)) {//se for um capitulo
         		livro.add(este, livro.getRoot());//filho da raiz
                 capAnterior = este;//ultimo capitulo acessado
@@ -73,10 +73,18 @@ public class Livro {
         }
     }
 
-    public void imprimeSumario (){}
+    public void geraSumario (GeneralTreeOfString livro){
+        ArrayList<String> linhas = livro.positionsPre();
+        for (String a :linhas) {
+            String[] arquivo = a.split("&");
+            if (arquivo[0].equals(titulo));
+            if (arquivo[2].equals(capitulo));
+        }
+    }
 
     public void imprimeLivro (){}
     // if ttiulo imprime uma pagina
     // imprime pÃ¡gina 1
     // imprimeSumario()
+
 }
