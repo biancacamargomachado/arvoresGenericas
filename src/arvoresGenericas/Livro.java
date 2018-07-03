@@ -182,7 +182,7 @@ public class Livro {
                 contC++;
                 
                 sumario.add(contC+". ");
-                sumario.add(arquivo[1]+"....."+paginaParaSumario.get(aux));
+                sumario.add(arquivo[1]+paginaParaSumario.get(aux));
                 aux++;
                 contS = 0;//reinicio cont de seção
                 contSS=0;//reinicio cont de SS
