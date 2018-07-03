@@ -45,14 +45,14 @@ public class Livro {
         	} else if (ultimo.equals(titulo)) {//se for um título
         		livro.add("L&"+este,null);//add o título que será root
         	}else if(ultimo.equals(capitulo)) {//se for um capitulo
-        		livro.add("L&"+este, livro.getRoot());//filho da raiz
-                capAnterior = este;//ultimo capitulo acessado
+        		livro.add("C&"+este, livro.getRoot());//filho da raiz
+                capAnterior = "C&"+este;//ultimo capitulo acessado
             }else if (ultimo.equals(secao)) {//se for uma secao
-                livro.add("L&"+este, capAnterior);//filho do capitulo anterior
-                secAnterior=este;// ultima secao acessada
+                livro.add("S&"+este, capAnterior);//filho do capitulo anterior
+                secAnterior="S&"+este;// ultima secao acessada
             }else if (ultimo.equals(paragrafo)) {
-                livro.add("L&"+este, secAnterior);//filho da sessao anterior
-                paragAnterior = este;
+                livro.add("P&"+este, secAnterior);//filho da sessao anterior
+                paragAnterior = "P&"+este;
             }else if(este.equals("\n")) continue;//se achar um \n continua
 //            if (este.equals(subsecao)) {
 //                livro.add(este, livro.getFaher(secAnterior)); // fazer depois
