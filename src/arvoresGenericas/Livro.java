@@ -130,11 +130,17 @@ public class Livro {
         int paginas;
         if (cont%15==0) paginas=cont/15;
         else paginas=(cont/15)+1;
-
-        System.out.println("Linhas: "+cont);
-        System.out.println("Paginas: "+paginas);
-
-
+        System.out.println();
+        System.out.println("-------------------------");
+        System.out.println("Carregando arquivo do Livro.txt...ok");
+        System.out.println("Gerando a arvore...ok");
+        System.out.println(" Capitulos...: "+contCapitulos);
+        System.out.println(" Secoes...: "+contSecoes);
+        System.out.println(" Subsecoes...: "+contSubsecoes);
+        System.out.println(" Paragrafos...: "+contParagrafos);
+        System.out.println("Gerando Sumario... ok");
+        System.out.println("Imprimindo o livro para o arquivo livro_prod.txt...ok");
+        System.out.println("-------------------------");
 
         // if ttiulo imprime uma pagina
         // imprime página 1
