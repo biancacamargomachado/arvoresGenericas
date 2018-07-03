@@ -46,13 +46,13 @@ public class Livro {
         		livro.add("L&"+este,null);//add o t�tulo que ser� root
         	}else if(ultimo.equals(capitulo)) {//se for um capitulo
         		livro.add("C&"+este, livro.getRoot());//filho da raiz
-                capAnterior = este;//ultimo capitulo acessado
+                capAnterior = "C&"+este;//ultimo capitulo acessado
             }else if (ultimo.equals(secao)) {//se for uma secao
                 livro.add("S&"+este, capAnterior);//filho do capitulo anterior
-                secAnterior=este;// ultima secao acessada
+                secAnterior="S&"+este;// ultima secao acessada
             }else if (ultimo.equals(paragrafo)) {
                 livro.add("P&"+este, secAnterior);//filho da sessao anterior
-                paragAnterior = este;
+                paragAnterior = "P&"+este;
             }else if(este.equals("\n")) continue;//se achar um \n continua
 //            if (este.equals(subsecao)) {
 //                livro.add(este, livro.getFaher(secAnterior)); // fazer depois
@@ -77,8 +77,15 @@ public class Livro {
         ArrayList<String> linhas = livro.positionsPre();
         for (String a :linhas) {
             String[] arquivo = a.split("&");
-            if (arquivo[0].equals(titulo));
-            if (arquivo[2].equals(capitulo));
+            if (arquivo[0].equals(titulo)){
+                cont=15;
+            }
+            if (arquivo[0].equals(capitulo)){
+                cont=1;
+            }
+            if (arquivo[0].equals(secao)){}
+            if (arquivo[0].equals(paragrafo)){}
+
         }
     }
 
