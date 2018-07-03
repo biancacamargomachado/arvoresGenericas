@@ -41,6 +41,9 @@ public class Dados {
 		}catch(IOException ioe){
 			ioe.printStackTrace();
 		} 
+		System.out.println();
+        System.out.println("-------------------------");
+        System.out.println("Carregando arquivo do Livro.txt...ok");
 		return listaLinhas;
 	}
 }

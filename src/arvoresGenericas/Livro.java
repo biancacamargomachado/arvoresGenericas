@@ -39,7 +39,6 @@ public class Livro {
         String ultimo = "";//salvo ultimo item acessado, L, P, S, SS...
 
         for (String este : dados) {
-            // equals "/n"
         	if(!este.equals("\n")) {
 	        	if (este.equals(titulo) || este.equals(capitulo) || este.equals(secao) || este.equals(paragrafo) || este.equals(subsecao)) {
 	            	ultimo = este;
@@ -66,18 +65,9 @@ public class Livro {
 	            }
         	} else continue;//se achar um \n continua
 
-
-//            if (linhas.get(key).equals(paragrafo)) paragrafos.add(linhas.get(key));
-//            else if (linhas.get(key).equals(secao)) secoes.add(linhas.get(key));
-//            else if (linhas.get(key).equals(subsecao)) subsecoes.add(linhas.get(key));
-//            else if (linhas.get(key).equals(capitulo)) capitulos.add(linhas.get(key));
-//            this.cont++;
-
         }
 
-//        for (String a : livro.positionsPre()) {
-//            System.out.println(a);
-//        }
+        System.out.println("Gerando a arvore...ok");
         geraLivro();
     }
 
@@ -103,32 +93,32 @@ public class Livro {
                 cont = cont + 15;
                 
                 paginaParaSumario.add(getPagina(cont));
-                System.out.println(arquivo[0]);
+                //System.out.println(arquivo[0]);
                 contTitulos++;
             }
             if (arquivo[0].equals(capitulo)) {
                 cont = cont + 1;
                 paginaParaSumario.add(getPagina(cont));
-                System.out.println(arquivo[0]);
+                //System.out.println(arquivo[0]);
                 contCapitulos++;
             }
             if (arquivo[0].equals(secao)) {
                 cont = cont + 1;
                 paginaParaSumario.add(getPagina(cont));
-                System.out.println(arquivo[0]);
+               // System.out.println(arquivo[0]);
                 contSecoes++;
             }
             if (arquivo[0].equals(subsecao)){
                 cont = cont + 1;
                 paginaParaSumario.add(getPagina(cont));
-                System.out.println(arquivo[0]);
+               // System.out.println(arquivo[0]);
                 contSubsecoes++;
             }
             if (arquivo[0].equals(paragrafo)) {
                 int tamParag = Integer.parseInt(arquivo[1]);
                 cont = cont + tamParag;
                 paginaParaSumario.add(getPagina(cont));
-                System.out.println(arquivo[0]);
+                //System.out.println(arquivo[0]);
                 contParagrafos++;
             }
 
@@ -147,8 +137,13 @@ public class Livro {
         int paginas;
         paginas = getPagina(cont);
     
-        System.out.println("Linhas: "+cont);
-        System.out.println("Páginas: "+paginas);
+        System.out.println(" Capitulos...: "+contCapitulos);
+        System.out.println(" Secoes...: "+contSecoes);
+        System.out.println(" Subsecoes...: "+contSubsecoes);
+        System.out.println(" Paragrafos...: "+contParagrafos);
+        System.out.println("Gerando Sumario... ok");
+        System.out.println("Imprimindo o livro para o arquivo livro_prod.txt...ok");
+        System.out.println("-------------------------");
 
         geraSumario();      
     }
