@@ -18,7 +18,8 @@ public class Livro {
     ArrayList<String> dados;
     ArrayList<String> sumario = new ArrayList<>();
     ArrayList<Integer> paginaParaSumario = new ArrayList<>();
-    
+    ArrayList<String> livroConsole = new ArrayList<>();
+
     public Livro(ArrayList<String> listaDados) {
         titulo = "L";
         capitulo = "C";
@@ -123,17 +124,7 @@ public class Livro {
             }
 
         }
-        
-        int cc= 0;
-        System.out.println("SUMÁRIO");
-        for(String b: sumario) {
-        	cc++;
-        	System.out.print(b);
-        	if(cc==2) {
-        		System.out.println("\n");
-        		cc=0;
-        	}
-        }
+
         int paginas;
         paginas = getPagina(cont);
     
@@ -145,7 +136,11 @@ public class Livro {
         System.out.println("Imprimindo o livro para o arquivo livro_prod.txt...ok");
         System.out.println("-------------------------");
 
-        geraSumario();      
+        geraSumario();
+        System.out.println();
+        System.out.println();
+        System.out.println("Este livro foi para o arquivo:");
+        imprimeLivroConsole ();
     }
     
     public Integer getPagina(Integer num) {
@@ -179,7 +174,7 @@ public class Livro {
                 sumario.add(contC+". ");
                 sumario.add(arquivo[1]+paginaParaSumario.get(aux));
                 aux++;
-                contS = 0;//reinicio cont de seção
+                contS = 0;//reinicio cont de seï¿½ï¿½o
                 contSS=0;//reinicio cont de SS
             }
             if (arquivo[0].equals(secao)) {
@@ -202,7 +197,7 @@ public class Livro {
         }
         
         int cc= 0;
-        System.out.println("SUMÁRIO");
+        System.out.println("SUMï¿½RIO");
         for(String b: sumario) {
         	cc++;
         	System.out.print(b);
@@ -211,5 +206,79 @@ public class Livro {
         		cc=0;
         	}
         }        
+    }
+
+    public void imprimeLivroConsole () {
+        int contC = 0;
+        int contS = 0;
+        int contSS = 0;
+        int contP = 0;
+        int contPag = 0;
+        int aux = 1;
+
+        ArrayList<String> linhas = livro.positionsPre();
+
+        String[] arquivo= null;
+
+        for (String a : linhas) {
+            arquivo = a.split("&");
+            if (arquivo[0].equals(titulo)){
+                for (aux=1;aux<=15;aux++){
+                    if(aux==7){
+                        livroConsole.add(aux+"              "+arquivo[1]+"                ");
+                    }
+                    else livroConsole.add(aux+"");
+                }
+
+                if(aux==15) {
+                    livroConsole.add("------------------ Capa");
+                    aux = 1;
+                }
+            }
+            if (arquivo[0].equals(capitulo)) {
+                contC++;
+                livroConsole.add(aux+"   "+contC+". "+arquivo[1]);
+                aux++;
+                contS = 0;//reinicio cont de seï¿½ï¿½o
+                contSS=0;//reinicio cont de SS
+            }
+            if (arquivo[0].equals(secao)) {
+                contS++;
+                livroConsole.add(aux+"   "+contC+"."+contS+". "+arquivo[1]);
+                aux++;
+            }
+            if (arquivo[0].equals(subsecao)){
+                contSS++;
+                livroConsole.add(aux+"   "+contC+"."+contS+"."+contSS+". "+arquivo[1]);
+                aux++;
+            }
+            if (arquivo[0].equals(paragrafo)) {
+                contP++;
+                int numLinhas = Integer.parseInt(arquivo[1]);
+
+                for (int f=1; f<=numLinhas;f++){
+                    livroConsole.add(aux+"   "+"Lorem Ipsum " + f);
+                    aux++;
+
+                    if(aux==15) {
+                        livroConsole.add("------------------ Pg." + ++contPag);
+                        aux = 1;
+                    }
+                }
+
+            }
+
+            if(aux==15) {
+                livroConsole.add("------------------ Pg." + ++contPag);
+                aux = 1;
+            }
+        }
+
+        System.out.println("---------------------");
+        for(String b: livroConsole) {
+
+            System.out.println(b);
+        }
+
     }
 }
