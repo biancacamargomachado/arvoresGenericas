@@ -124,16 +124,6 @@ public class Livro {
 
         }
         
-        int cc= 0;
-        System.out.println("SUMÁRIO");
-        for(String b: sumario) {
-        	cc++;
-        	System.out.print(b);
-        	if(cc==2) {
-        		System.out.println("\n");
-        		cc=0;
-        	}
-        }
         int paginas;
         paginas = getPagina(cont);
     
@@ -166,7 +156,7 @@ public class Livro {
         int contP = 0;
         int contPag = 0;
         int aux = 1;
-        
+        String pontos;
     	ArrayList<String> linhas = livro.positionsPre();
         
         String[] arquivo= null;
@@ -176,8 +166,11 @@ public class Livro {
             if (arquivo[0].equals(capitulo)) {
                 contC++;
                 
+               pontos = geraPontos(arquivo[1].length());
                 sumario.add(contC+". ");
-                sumario.add(arquivo[1]+paginaParaSumario.get(aux));
+                sumario.add(arquivo[1]
+                		+pontos
+                		+paginaParaSumario.get(aux));
                 aux++;
                 contS = 0;//reinicio cont de seção
                 contSS=0;//reinicio cont de SS
@@ -185,13 +178,21 @@ public class Livro {
             if (arquivo[0].equals(secao)) {
                 contS++;
                 sumario.add(" "+contC+"."+contS+". ");
-                sumario.add(arquivo[1]+"....."+paginaParaSumario.get(aux));
+                
+                pontos = geraPontos(arquivo[1].length()+3);
+                sumario.add(arquivo[1]
+                		+pontos
+                		+paginaParaSumario.get(aux));
                 aux++;
             }
             if (arquivo[0].equals(subsecao)){
             	contSS++;
             	sumario.add("  "+contC+"."+contS+"."+contSS+". ");
-                sumario.add(arquivo[1]+"....."+paginaParaSumario.get(aux));
+            	
+            	pontos = geraPontos(arquivo[1].length()+6);
+                sumario.add(arquivo[1]
+                		+pontos
+                		+paginaParaSumario.get(aux));
                 aux++;
             }
             if (arquivo[0].equals(paragrafo)) {
@@ -211,5 +212,13 @@ public class Livro {
         		cc=0;
         	}
         }        
+    }
+    
+    public String geraPontos(int tam){
+    	String pontos = ".";
+    	for(int i=0;i<(30-tam);i++) {
+    		pontos = pontos.concat(".");
+    	}
+    	return pontos;
     }
 }
