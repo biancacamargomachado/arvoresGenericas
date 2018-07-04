@@ -253,7 +253,8 @@ public class Livro {
             if (arquivo[0].equals(titulo)){
                 for (aux=1;aux<=15;aux++){
                     if(aux==7){
-                        livroConsole.add(aux+"              "+arquivo[1]+"                ");
+                        String espaco = geraEspacos(arquivo[1].length());
+                        livroConsole.add(aux+espaco+arquivo[1]+espaco);
                     }
                     else livroConsole.add(aux+"");
 
@@ -340,5 +341,13 @@ public class Livro {
         arq.close();
      
         System.out.printf("\nGravado");
+    }
+
+    public String geraEspacos(int tam) {
+        String espaco = ".";
+        for (int i = 0; i < (15 - tam); i++) {
+            espaco = espaco.concat(" ");
+        }
+        return espaco;
     }
 }
