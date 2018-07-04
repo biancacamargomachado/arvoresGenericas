@@ -76,15 +76,9 @@ public class Livro {
 
         }
 
-        System.out.println("Gerando a arvore...ok");
+        System.out.println("Gerando a árvore...ok");
         geraLivro();
     }
-
-    public void geraSumario(GeneralTreeOfString livro) {
-
-
-    }
-
 
     public void geraLivro() {
         int contTitulos = 0;
@@ -135,18 +129,30 @@ public class Livro {
         paginas = getPagina(cont);
     
         System.out.println(" Capitulos...: "+contCapitulos);
-        System.out.println(" Secoes...: "+contSecoes);
-        System.out.println(" Subsecoes...: "+contSubsecoes);
-        System.out.println(" Paragrafos...: "+contParagrafos);
-        System.out.println("Gerando Sumario... ok");
-        System.out.println("Imprimindo o livro para o arquivo livro_prod.txt...ok");
-        System.out.println("-------------------------");
+        System.out.println(" Seções...: "+contSecoes);
+        System.out.println(" Subseções...: "+contSubsecoes);
+        System.out.println(" Parágrafos...: "+contParagrafos);
+        
+        System.out.println("Imprimindo o livro para o arquivo livro_prod.txt... ok");
+           
+        try {
+        	geraSumario();
+        	System.out.println("Gerando Sumário... ok");
+        }catch(Exception e) {
+        	System.out.println("Erro no sumário" + e);
+        }
+               
+        try {
+        	System.out.println("-------------------------");
+        	System.out.println("\n");
 
-        geraSumario();
-        System.out.println();
-        System.out.println();
-        System.out.println("Este livro foi para o arquivo:");
-        imprimeLivroConsole ();
+        	imprimeLivroConsole ();
+        }catch(Exception e) {
+        	System.out.println("Erro em imprimeLivroConsole() "+e);
+        }finally {
+        	System.out.println("Confira o arquivo livro_prod.txt! :)");
+        }
+        
     }
     
     public Integer getPagina(Integer num) {
@@ -341,7 +347,7 @@ public class Livro {
     }
     
     public void salvaArqLivro() throws IOException{
-        FileWriter arq = new FileWriter("final.txt");
+        FileWriter arq = new FileWriter("livro_prod.txt");
         PrintWriter gravarArq = new PrintWriter(arq);
    
         for(String esse : livroConsole) {
@@ -350,7 +356,7 @@ public class Livro {
      
         arq.close();
      
-        System.out.printf("\nGravado");
+        System.out.printf("\nFIM!\n");
     }
 
     public String geraEspacos(int tam) {

@@ -20,9 +20,9 @@ public class Dados {
 		String desc = "";//descri��o
 		int cont = 0; //
 		ArrayList<String> listaLinhas = new ArrayList<>();
-		
+		String arq = "livro.txt";
 		try{
-			BufferedReader br = new BufferedReader(new FileReader("livro.txt"));
+			BufferedReader br = new BufferedReader(new FileReader(arq));
 			while(br.ready()){
 				String linha = br.readLine();
 				String[] teste = linha.split(" ");//quebra por espa�os
@@ -43,7 +43,7 @@ public class Dados {
 		} 
 		System.out.println();
         System.out.println("-------------------------");
-        System.out.println("Carregando arquivo do livro.txt...ok");
+        System.out.printf("Carregando arquivo do %s ...ok \n",arq);
 		return listaLinhas;
 	}
 }
