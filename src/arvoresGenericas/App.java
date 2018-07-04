@@ -21,13 +21,6 @@ public class App {
             }catch(Exception e) {
                     System.out.println("Excecao"+e);
             }
-
-        
-
-        
-        
-//        ArrayList<Integer> l = arv.positionsWidth();
-//        System.out.println(l);
         
     }
 }
