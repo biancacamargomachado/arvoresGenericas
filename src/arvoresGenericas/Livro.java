@@ -1,7 +1,13 @@
 package arvoresGenericas;
 
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.lang.reflect.Array;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -313,6 +319,17 @@ public class Livro {
 
             System.out.println(b);
         }
+        
+        try {
+			salvaArqLivro();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    
+    public void salvaArqLivro() throws IOException{
+    	
     }
 
     public String geraEspacos(int tam) {
