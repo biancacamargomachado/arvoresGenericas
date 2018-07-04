@@ -43,7 +43,7 @@ public class Dados {
 		} 
 		System.out.println();
         System.out.println("-------------------------");
-        System.out.println("Carregando arquivo do Livro.txt...ok");
+        System.out.println("Carregando arquivo do livro.txt...ok");
 		return listaLinhas;
 	}
 }

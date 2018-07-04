@@ -92,11 +92,10 @@ public class Livro {
         int contSecoes = 0;
         int contSubsecoes = 0;
         int contParagrafos = 0;
-        
-        ArrayList<String> linhas = livro.positionsPre();
+  
         String[] arquivo= null;
        
-        for (String a : linhas) {
+        for (String a : livro.positionsPre()) {
             arquivo = a.split("&");
             if (arquivo[0].equals(titulo)) {
                 cont = cont + 15;
@@ -179,8 +178,7 @@ public class Livro {
                 contC++;
                 
                pontos = geraPontos(arquivo[1].length());
-                sumario.add(contC+". ");
-                sumario.add(arquivo[1]
+                sumario.add(contC+". "+arquivo[1]
                 		+pontos
                 		+paginaParaSumario.get(aux));
                 aux++;
@@ -189,20 +187,18 @@ public class Livro {
             }
             if (arquivo[0].equals(secao)) {
                 contS++;
-                sumario.add(" "+contC+"."+contS+". ");
-                
+       
                 pontos = geraPontos(arquivo[1].length()+3);
-                sumario.add(arquivo[1]
+                sumario.add(" "+contC+"."+contS+". "+arquivo[1]
                 		+pontos
                 		+paginaParaSumario.get(aux));
                 aux++;
             }
             if (arquivo[0].equals(subsecao)){
             	contSS++;
-            	sumario.add("  "+contC+"."+contS+"."+contSS+". ");
-            	
+
             	pontos = geraPontos(arquivo[1].length()+6);
-                sumario.add(arquivo[1]
+                sumario.add("  "+contC+"."+contS+"."+contSS+". "+arquivo[1]
                 		+pontos
                 		+paginaParaSumario.get(aux));
                 aux++;
@@ -214,16 +210,16 @@ public class Livro {
 
         }
         
-        int cc= 0;
-        System.out.println("SUMï¿½RIO");
-        for(String b: sumario) {
-        	cc++;
-        	System.out.print(b);
-        	if(cc==2) {
-        		System.out.println("\n");
-        		cc=0;
-        	}
-        }        
+//        int cc= 0;
+//        System.out.println("SUMÁRIO");
+//        for(String b: sumario) {
+//        	cc++;
+//        	System.out.print(b);
+//        	if(cc==2) {
+//        		System.out.println("\n");
+//        		cc=0;
+//        	}
+//        }        
     }
 
     
@@ -243,12 +239,10 @@ public class Livro {
         int contPag = 0;
         int aux = 1;
 
-        ArrayList<String> linhas = livro.positionsPre();
-
         String[] arquivo= null;
         
-        livroConsole.add("---------------------");
-        for (String a : linhas) {
+        livroConsole.add("------------------------------");
+        for (String a : livro.positionsPre()) {
             arquivo = a.split("&");
             if (arquivo[0].equals(titulo)){
                 for (aux=1;aux<=15;aux++){
@@ -260,9 +254,9 @@ public class Livro {
 
                 }
                 if (aux>=15){
-                    livroConsole.add("------------------ Capa.");
+                    livroConsole.add("------------------------------ Capa.");
                     aux = 1;
-                    contPag++;
+                    //contPag++;
                 }
 
             }
@@ -272,29 +266,35 @@ public class Livro {
                 contS = 0;//reinicio cont de seï¿½ï¿½o
                 contSS=0;//reinicio cont de SS
                 if (aux>=15){
-                    livroConsole.add("------------------ Pg." + ++contPag);
+                    livroConsole.add("------------------------------ Pg." + ++contPag);
                     aux = 1;
-                    contPag++;
+                    //contPag++;
                 }
                 aux++;
             }
             if (arquivo[0].equals(secao)) {
                 contS++;
-                livroConsole.add(aux+"   "+contC+"."+contS+". "+arquivo[1]);
+                if(aux>9)
+                	livroConsole.add(aux+"  "+contC+"."+contS+". "+arquivo[1]);
+                if(aux<=9)
+                	livroConsole.add(aux+"   "+contC+"."+contS+". "+arquivo[1]);
                 if (aux>=15){
-                    livroConsole.add("------------------ Pg." + ++contPag);
+                    livroConsole.add("------------------------------ Pg." + ++contPag);
                     aux = 1;
-                    contPag++;
+                   // contPag++;
                 }
                 aux++;
             }
             if (arquivo[0].equals(subsecao)){
                 contSS++;
-                livroConsole.add(aux+"   "+contC+"."+contS+"."+contSS+". "+arquivo[1]);
+                if(aux>9)//só para formatação do que vai ser impresso no arq
+                	livroConsole.add(aux+"  "+contC+"."+contS+"."+contSS+". "+arquivo[1]);
+                else if(aux<=9)
+                	livroConsole.add(aux+"   "+contC+"."+contS+"."+contSS+". "+arquivo[1]);
                 if (aux>=15){
-                    livroConsole.add("------------------ Pg." + ++contPag);
+                    livroConsole.add("------------------------------ Pg." + ++contPag);
                     aux = 1;
-                    contPag++;
+                    //contPag++;
                 }
                 aux++;
 
@@ -304,11 +304,15 @@ public class Livro {
                 int numLinhas = Integer.parseInt(arquivo[1]);
 
                 for (int f=1; f<=numLinhas;f++){
-                    livroConsole.add(aux+"   "+"Lorem Ipsum " + f);
+                	 if(aux>9)//só para formatação do que vai ser impresso
+                		 livroConsole.add(aux+"  "+"Lorem Ipsum " + f);
+                	 else if(aux<=9)//só para formatação do que vai ser impresso
+                		 livroConsole.add(aux+"   "+"Lorem Ipsum " + f);
+                	 
                     if (aux>=15){
-                        livroConsole.add("------------------ Pg." + ++contPag);
+                        livroConsole.add("------------------------------ Pg." + ++contPag);
                         aux = 1;
-                        contPag++;
+                       // contPag++;
                     }
                     aux++;
                 }
@@ -316,7 +320,13 @@ public class Livro {
             }
 
         }
-
+        
+        livroConsole.add("------------------------------ Pg." + ++contPag);
+        livroConsole.add("SUMÁRIO");
+        for(String b: sumario) {
+        	livroConsole.add(b);
+        } 
+        
         for(String b: livroConsole) {
 
             System.out.println(b);
@@ -344,8 +354,8 @@ public class Livro {
     }
 
     public String geraEspacos(int tam) {
-        String espaco = ".";
-        for (int i = 0; i < (15 - tam); i++) {
+        String espaco = " ";
+        for (int i = 0; i < (20 - tam); i++) {
             espaco = espaco.concat(" ");
         }
         return espaco;
