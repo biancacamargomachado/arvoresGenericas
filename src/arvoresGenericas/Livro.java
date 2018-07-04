@@ -260,7 +260,7 @@ public class Livro {
 
                 }
                 if (aux>=15){
-                    livroConsole.add("------------------------------ Capa.");
+                    livroConsole.add("------------------------------ Capa");
                     aux = 1;
                     //contPag++;
                 }
