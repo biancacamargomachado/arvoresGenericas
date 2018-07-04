@@ -228,29 +228,47 @@ public class Livro {
                         livroConsole.add(aux+"              "+arquivo[1]+"                ");
                     }
                     else livroConsole.add(aux+"");
+
+                }
+                if (aux>=15){
+                    livroConsole.add("------------------ Capa.");
+                    aux = 1;
+                    contPag++;
                 }
 
-                if(aux==15) {
-                    livroConsole.add("------------------ Capa");
-                    aux = 1;
-                }
             }
             if (arquivo[0].equals(capitulo)) {
                 contC++;
                 livroConsole.add(aux+"   "+contC+". "+arquivo[1]);
-                aux++;
                 contS = 0;//reinicio cont de se��o
                 contSS=0;//reinicio cont de SS
+                if (aux>=15){
+                    livroConsole.add("------------------ Pg." + ++contPag);
+                    aux = 1;
+                    contPag++;
+                }
+                aux++;
             }
             if (arquivo[0].equals(secao)) {
                 contS++;
                 livroConsole.add(aux+"   "+contC+"."+contS+". "+arquivo[1]);
+                if (aux>=15){
+                    livroConsole.add("------------------ Pg." + ++contPag);
+                    aux = 1;
+                    contPag++;
+                }
                 aux++;
             }
             if (arquivo[0].equals(subsecao)){
                 contSS++;
                 livroConsole.add(aux+"   "+contC+"."+contS+"."+contSS+". "+arquivo[1]);
+                if (aux>=15){
+                    livroConsole.add("------------------ Pg." + ++contPag);
+                    aux = 1;
+                    contPag++;
+                }
                 aux++;
+
             }
             if (arquivo[0].equals(paragrafo)) {
                 contP++;
@@ -258,20 +276,16 @@ public class Livro {
 
                 for (int f=1; f<=numLinhas;f++){
                     livroConsole.add(aux+"   "+"Lorem Ipsum " + f);
-                    aux++;
-
-                    if(aux==15) {
+                    if (aux>=15){
                         livroConsole.add("------------------ Pg." + ++contPag);
                         aux = 1;
+                        contPag++;
                     }
+                    aux++;
                 }
 
             }
 
-            if(aux==15) {
-                livroConsole.add("------------------ Pg." + ++contPag);
-                aux = 1;
-            }
         }
 
         System.out.println("---------------------");
