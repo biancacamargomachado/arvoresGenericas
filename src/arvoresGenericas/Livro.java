@@ -5,11 +5,13 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.lang.reflect.Array;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Scanner;
 
 public class Livro {
 
@@ -244,7 +246,8 @@ public class Livro {
         ArrayList<String> linhas = livro.positionsPre();
 
         String[] arquivo= null;
-
+        
+        livroConsole.add("---------------------");
         for (String a : linhas) {
             arquivo = a.split("&");
             if (arquivo[0].equals(titulo)){
@@ -313,7 +316,6 @@ public class Livro {
 
         }
 
-        System.out.println("---------------------");
         for(String b: livroConsole) {
 
             System.out.println(b);
@@ -328,6 +330,15 @@ public class Livro {
     }
     
     public void salvaArqLivro() throws IOException{
-    	
+        FileWriter arq = new FileWriter("final.txt");
+        PrintWriter gravarArq = new PrintWriter(arq);
+   
+        for(String esse : livroConsole) {
+        	gravarArq.printf(esse+"%n");
+        }
+     
+        arq.close();
+     
+        System.out.printf("\nGravado");
     }
 }
